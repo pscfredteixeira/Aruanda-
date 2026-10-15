@@ -1,4 +1,4 @@
-/* ARUANDA — Sprint 02. Movimento preservado; combate em combat.js. */
+/* ARUANDA — Sprint 03. Movimentação original preservada; suporte a ataques aéreos. */
 (function(){
 "use strict";
 var Phaser=window.Phaser;
@@ -51,8 +51,8 @@ class Title extends Phaser.Scene{
    gfx.lineStyle(16,0xc8aa74,.35);gfx.strokeCircle(480,250,128);
    label(this,480,76,"A R U A N D A",59,"#2c4539").setOrigin(.5,0);
    label(this,480,161,"UM ESPÍRITO. MUITOS CAMINHOS.",17,"#5c6658").setOrigin(.5,0);
-   label(this,480,225,"Prévia jogável • Combate inicial",24,"#30493c").setOrigin(.5,0);
-   label(this,480,274,"Corra, pule e enfrente o primeiro espírito rastejante.",17,"#536456").setOrigin(.5,0);
+   label(this,480,225,"Prévia jogável • Combate aéreo",24,"#30493c").setOrigin(.5,0);
+   label(this,480,274,"Explore as plataformas e enfrente espíritos no chão e no ar.",17,"#536456").setOrigin(.5,0);
    var bg=this.add.rectangle(480,381,360,65,0x304c3d).setInteractive({useHandCursor:true});
    label(this,480,381,"JOGAR SALA DE TESTE",21,"#fff4dc").setOrigin(.5);
    bg.on("pointerdown",()=>this.scene.start("Training"));
@@ -84,6 +84,7 @@ class Training extends Phaser.Scene{
   });
   makeHero(this);
   window.AruandaCombat.makeCrawler(this);
+  window.AruandaCombat.makeWisp(this);
   this.hero=this.physics.add.sprite(START.x,START.y,"hero").setDepth(15);
   this.hero.setCollideWorldBounds(true);
   var body=this.hero.body;
@@ -96,14 +97,14 @@ class Training extends Phaser.Scene{
   this.cameras.main.setDeadzone(100,65);
   this.cameras.main.setFollowOffset(-40,10);
   this.cursors=this.input.keyboard?.createCursorKeys();
-  this.keys=this.input.keyboard?.addKeys("A,D,W,J,R,F3,ESC");
+  this.keys=this.input.keyboard?.addKeys("A,D,W,S,J,R,F3,ESC");
   this.input.keyboard?.addCapture([32,37,38,39,40]);
   this.combat=new window.AruandaCombat.CombatSystem(this,solids);
-  this.add.text(18,17,"O LIMIAR  /  TESTE DE COMBATE",{
+  this.add.text(18,17,"O LIMIAR  /  TESTE AÉREO",{
    fontFamily:"Georgia,serif",fontSize:"17px",fontStyle:"bold",color:"#fff0d5",
    backgroundColor:"#263d32dd",padding:{x:12,y:8}
   }).setScrollFactor(0).setDepth(90);
-  this.add.text(18,H-38,"A/D mover  ·  ESPAÇO pular  ·  J / X-□ atacar  ·  R reiniciar  ·  F3 debug  ·  ESC menu",{
+  this.add.text(18,H-38,"A/D mover · Espaço pular · J atacar · no ar S/↓ + J: golpe baixo · R reiniciar · F3 debug",{
    fontFamily:"Arial,sans-serif",fontSize:"13px",color:"#fff1d7",
    backgroundColor:"#263d32dd",padding:{x:10,y:8}
   }).setScrollFactor(0).setDepth(90);
@@ -144,9 +145,11 @@ class Training extends Phaser.Scene{
     this.hero.setPosition(this.lastSafe.x,this.lastSafe.y-6);body.setVelocity(0,0);this.coyote=0;this.buffer=0;
   }
   var attackHeld=!!(k.J?.isDown||pad?.buttons?.[2]?.pressed);
-  this.combat?.update(Math.min(delta,50),attackHeld);
+  var downHeld=!!(k.S?.isDown||this.cursors?.down.isDown||pad?.buttons?.[13]?.pressed||
+   (pad?.axes?.[1]?.getValue()||0)>.55);
+  this.combat?.update(Math.min(delta,50),attackHeld,grounded,downHeld);
   if(this.debugOn)this.debugText.setText([
-    "ARUANDA / SPRINT 02",
+    "ARUANDA / SPRINT 03",
     "x: "+Math.round(this.hero.x)+"  y: "+Math.round(this.hero.y),
     "vx: "+Math.round(body.velocity.x)+"  vy: "+Math.round(body.velocity.y),
     "chão: "+(grounded?"SIM":"NÃO"),

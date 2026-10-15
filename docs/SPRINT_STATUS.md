@@ -1,27 +1,25 @@
 # Aruanda — Progresso dos sprints
 
 ## Sprint 00 — Fundação Web
-- [x] Repositório público, branch main
-- [x] Menu e hospedagem estática compatível com GitHub Pages
+- [x] Repositório público e publicação estática compatível com GitHub Pages
 
 ## Sprint 01 — Movimento
-- [x] Plataforma, corrida, pulo variável, buffer, coyote time, câmera e suporte inicial a gamepad
-- [ ] Confirmação manual de execução pelo usuário
+- [x] Corrida, pulo variável, buffer, coyote time, câmera, gamepad inicial
 
 ## Sprint 02 — Combate
-- [x] Golpe 1 + golpe 2 com segundo pressionamento
-- [x] Hitbox de janela ativa orientada à esquerda/direita
-- [x] Um acerto por golpe, feedback, hit-stop e knockback
-- [x] Espírito Rastejante (2 HP), patrulha, detecção e perseguição
-- [x] Contato causa 1 HP, invulnerabilidade 0,8s, reset ao perder 5 HP
-- [x] HUD de vida, debug, J / X-Square, arena com reaparecimento do inimigo
-- [ ] Teste funcional em navegador real e controle conectado
+- [x] Vara, combo de dois golpes, hitbox, rastejante, HP, invulnerabilidade, knockback
 
-## Próxima etapa — Sprint 03
-Ataques aéreo e para baixo, melhoras de game feel, inimigo flutuante, mantendo a fase de teste. Só avançar após avaliar o Sprint 02.
+## Sprint 03 — Combate aéreo e inimigo flutuante
+- [x] Ataque horizontal quando o jogador está no ar
+- [x] Golpe vertical para baixo com impulso ao acertar (pogo)
+- [x] Limitar ataques aéreos a um por salto até aterrissar
+- [x] Espírito Flutuante com patrulha suave, detecção e perseguição
+- [x] Dano, HP, respawn e barra de vida do novo inimigo
+- [x] Debug e instruções dos controles atualizados
+- [ ] Teste real no navegador: comportamento, colisões, equilíbrio e controle físico
+
+## Sprint 04 — Próximo
+Recursos, cura, coletáveis e feedback de coleta, após revisão do Sprint 03.
 
 ## Tecnologia
-Phaser 3.90.0 por CDN, JavaScript estático. Migração para TypeScript + Vite planejada.
-
-## Observações
-Sem teste de browser automatizado nesta publicação. Código precisa ser validado jogando.
+Phaser 3.90.0 carregado por CDN, HTML e JavaScript. TypeScript + Vite planejados para infraestrutura futura.

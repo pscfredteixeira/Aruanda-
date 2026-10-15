@@ -2,30 +2,43 @@
 
 Metroidvania 2D autoral inspirado nas cosmologias afro-brasileiras.
 
-**Estado:** Sprint 02 — prévia jogável de movimento e combate.
+**Sprint atual:** 03 — Combate aéreo e Espírito Flutuante.
 
 **Jogar:** https://pscfredteixeira.github.io/Aruanda-/
 
-## Jogabilidade atual
-- Sala de teste com plataformas, saltos e câmera seguindo o protagonista.
-- Corrida, pulo curto e longo, coyote time e jump buffer.
-- Combate com a vara quebrada: golpe inicial e segundo golpe encadeado com novo pressionamento.
-- Alcance de ataque com hitbox temporária, orientação esquerda/direita, acerto único por golpe, feedback visual, hit-stop e knockback.
-- Espírito Rastejante com 2 HP, patrulha, perseguição curta, atordoamento e reaparecimento para testes.
-- Jogador com 5 HP, dano por contato, invulnerabilidade temporária e reinício após perder toda a vida.
-- HUD básico de vida, eliminações e debug (F3).
-- Teclado: A/D ou setas para andar; Espaço/W/↑ para pular; J para atacar; R reiniciar; Esc menu.
-- Gamepad: analógico/D-pad para andar; A/Cross pular; X/Square atacar.
+## Funcionalidades
+
+- Movimento, câmera, pulo com altura variável, coyote time e jump buffer dos sprints anteriores.
+- Vara quebrada: dois golpes terrestres, ataque horizontal no ar e ataque para baixo.
+- Golpe para baixo: impulsiona para cima quando atinge um inimigo (pogo); não é pulo duplo.
+- Espírito Rastejante (2 HP): patrulha e persegue o jogador.
+- Espírito Flutuante (2 HP): flutua e persegue o personagem quando próximo.
+- Hitbox ativa por janela de ataque, acerto único por inimigo e golpe, hit-stop, knockback e feedback visual.
+- Vida (5 HP), invulnerabilidade temporária, contador de eliminações e reinício após morte.
+- Ambos os inimigos reaparecem na sala de teste.
+- HUD inicial e painel de diagnóstico F3.
+
+## Controles
+
+| Ação | Teclado | Controle |
+| --- | --- | --- |
+| Mover | A/D ou setas | Analógico esquerdo ou D-pad |
+| Pular | Espaço, W, ↑ | A / Cross |
+| Atacar no chão | J | X / Square |
+| Atacar no ar | J durante o salto | X / Square durante o salto |
+| Golpe para baixo | S/↓ + J no ar | D-pad para baixo + X / Square no ar |
+| Reiniciar teste | R | — |
+| Debug | F3 | — |
+| Menu | Esc | — |
+
+O ataque aéreo pode ser utilizado uma vez por salto até tocar o chão. O impulso de pogo depende de acertar um inimigo com o golpe para baixo.
 
 ## Publicação
-A versão desta entrega é HTML + JavaScript com Phaser 3.90.0 carregado por CDN, compatível com GitHub Pages configurado para **main/(root)**. Os scripts executam em ordem: Phaser, combat.js, game.js.
 
-A arquitetura Phaser + TypeScript + Vite permanece como direção para uma migração posterior; o protótipo estático foi escolhido para publicação direta sem build.
+O protótipo utiliza Phaser 3.90.0 por CDN e JavaScript estático na raiz, compatível com GitHub Pages branch main / (root). Migração para TypeScript + Vite permanece planejada.
 
-## Fora do escopo atual
-Ataque aéreo e para baixo, inimigo flutuante, chefe opcional, coleta de recursos, checkpoints, saves e mapa definitivo.
+## Estado dos testes
 
-## Testes
-Revisar manualmente no navegador: movimento, combo em J, direção dos golpes, dano, HUD, contato inimigo-jogador, hit-stop, respawn e controle real. Referência: \`docs/SPRINT_02_TESTES.md\`.
+A sintaxe do JavaScript pode ser verificada automaticamente, mas a execução real, colisão, controle e game feel precisam ser avaliados jogando no navegador. Veja `docs/SPRINT_03_TESTES.md`.
 
-Os visuais atuais são placeholders vetoriais, não a arte definitiva.
+Ainda não foram implementados: coletáveis, cura, checkpoints persistentes, o mapa completo e a arte final.
