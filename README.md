@@ -2,43 +2,38 @@
 
 Metroidvania 2D autoral inspirado nas cosmologias afro-brasileiras.
 
-**Sprint atual:** 03 — Combate aéreo e Espírito Flutuante.
+**Sprint atual:** 04 — Ecos, Fragmentos de Memória e Essência Vital.
 
 **Jogar:** https://pscfredteixeira.github.io/Aruanda-/
 
-## Funcionalidades
-
-- Movimento, câmera, pulo com altura variável, coyote time e jump buffer dos sprints anteriores.
-- Vara quebrada: dois golpes terrestres, ataque horizontal no ar e ataque para baixo.
-- Golpe para baixo: impulsiona para cima quando atinge um inimigo (pogo); não é pulo duplo.
-- Espírito Rastejante (2 HP): patrulha e persegue o jogador.
-- Espírito Flutuante (2 HP): flutua e persegue o personagem quando próximo.
-- Hitbox ativa por janela de ataque, acerto único por inimigo e golpe, hit-stop, knockback e feedback visual.
-- Vida (5 HP), invulnerabilidade temporária, contador de eliminações e reinício após morte.
-- Ambos os inimigos reaparecem na sala de teste.
-- HUD inicial e painel de diagnóstico F3.
+## Jogabilidade disponível
+- Movimento, câmera, pulo simples/variável, coyote time, jump buffer.
+- Combate com a vara quebrada: 2 golpes, ataque no ar e ataque descendente (pogo).
+- Espírito Rastejante + Espírito Flutuante, knockback, hit-stop, vida e dano.
+- Ecos: itens fixos no cenário e drops ao derrotar inimigos, de valor variável.
+- Fragmentos de Memória: 6 ao longo da sala, únicos e salvos depois da coleta.
+- Essência Vital: até 3 unidades armazenadas; cura 1 HP após 0,56 segundos.
+- Contadores no HUD, mensagens de coleta e feedback de cura.
+- Persistência inicial em localStorage: Ecos, memórias e pickups fixos adquiridos. Não é o sistema de save completo.
 
 ## Controles
-
 | Ação | Teclado | Controle |
 | --- | --- | --- |
-| Mover | A/D ou setas | Analógico esquerdo ou D-pad |
-| Pular | Espaço, W, ↑ | A / Cross |
-| Atacar no chão | J | X / Square |
-| Atacar no ar | J durante o salto | X / Square durante o salto |
-| Golpe para baixo | S/↓ + J no ar | D-pad para baixo + X / Square no ar |
-| Reiniciar teste | R | — |
+| Mover | A/D ou setas | D-pad/analógico |
+| Pular | Espaço, W, seta para cima | A / Cross |
+| Atacar | J | X / Square |
+| Ataque descendente | S ou seta para baixo + J no ar | Baixo + X/Square no ar |
+| Curar | K | B / Circle |
+| Reiniciar a sala | R | — |
 | Debug | F3 | — |
-| Menu | Esc | — |
+| Voltar ao menu | Esc | — |
 
-O ataque aéreo pode ser utilizado uma vez por salto até tocar o chão. O impulso de pogo depende de acertar um inimigo com o golpe para baixo.
+**Teste de cura:** colete uma Essência, receba 1 ponto de dano tocando num inimigo, depois pressione K.
 
 ## Publicação
+Projeto Web estático, sem build: HTML + JS, Phaser 3.90.0 via CDN, GitHub Pages main / root. Arquivos carregados em ordem: `combat.js`, `inventory.js`, `game.js`. Migração futura para TypeScript + Vite continua prevista.
 
-O protótipo utiliza Phaser 3.90.0 por CDN e JavaScript estático na raiz, compatível com GitHub Pages branch main / (root). Migração para TypeScript + Vite permanece planejada.
+## Escopo futuro
+Checkpoints, save completo, Fase 1 com 15 salas, cenários e sprites definitivos, Exu e regiões dos orixás.
 
-## Estado dos testes
-
-A sintaxe do JavaScript pode ser verificada automaticamente, mas a execução real, colisão, controle e game feel precisam ser avaliados jogando no navegador. Veja `docs/SPRINT_03_TESTES.md`.
-
-Ainda não foram implementados: coletáveis, cura, checkpoints persistentes, o mapa completo e a arte final.
+Consultar `docs/SPRINT_04_TESTES.md` para validar o sprint.

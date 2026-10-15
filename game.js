@@ -1,4 +1,4 @@
-/* ARUANDA — Sprint 03. Movimentação original preservada; suporte a ataques aéreos. */
+/* ARUANDA — Sprint 04. Movimentação e combate preservados; recursos em inventory.js. */
 (function(){
 "use strict";
 var Phaser=window.Phaser;
@@ -51,8 +51,8 @@ class Title extends Phaser.Scene{
    gfx.lineStyle(16,0xc8aa74,.35);gfx.strokeCircle(480,250,128);
    label(this,480,76,"A R U A N D A",59,"#2c4539").setOrigin(.5,0);
    label(this,480,161,"UM ESPÍRITO. MUITOS CAMINHOS.",17,"#5c6658").setOrigin(.5,0);
-   label(this,480,225,"Prévia jogável • Combate aéreo",24,"#30493c").setOrigin(.5,0);
-   label(this,480,274,"Explore as plataformas e enfrente espíritos no chão e no ar.",17,"#536456").setOrigin(.5,0);
+   label(this,480,225,"Prévia jogável • Exploração e recompensas",24,"#30493c").setOrigin(.5,0);
+   label(this,480,274,"Encontre memórias, junte Ecos e recupere sua vida.",17,"#536456").setOrigin(.5,0);
    var bg=this.add.rectangle(480,381,360,65,0x304c3d).setInteractive({useHandCursor:true});
    label(this,480,381,"JOGAR SALA DE TESTE",21,"#fff4dc").setOrigin(.5);
    bg.on("pointerdown",()=>this.scene.start("Training"));
@@ -97,14 +97,15 @@ class Training extends Phaser.Scene{
   this.cameras.main.setDeadzone(100,65);
   this.cameras.main.setFollowOffset(-40,10);
   this.cursors=this.input.keyboard?.createCursorKeys();
-  this.keys=this.input.keyboard?.addKeys("A,D,W,S,J,R,F3,ESC");
+  this.keys=this.input.keyboard?.addKeys("A,D,W,S,J,K,R,F3,ESC");
   this.input.keyboard?.addCapture([32,37,38,39,40]);
   this.combat=new window.AruandaCombat.CombatSystem(this,solids);
-  this.add.text(18,17,"O LIMIAR  /  TESTE AÉREO",{
+  this.inventory=new window.AruandaInventory.InventorySystem(this,solids,this.combat);
+  this.add.text(18,17,"O LIMIAR  /  TESTE DE RECURSOS",{
    fontFamily:"Georgia,serif",fontSize:"17px",fontStyle:"bold",color:"#fff0d5",
    backgroundColor:"#263d32dd",padding:{x:12,y:8}
   }).setScrollFactor(0).setDepth(90);
-  this.add.text(18,H-38,"A/D mover · Espaço pular · J atacar · no ar S/↓ + J: golpe baixo · R reiniciar · F3 debug",{
+  this.add.text(18,H-38,"A/D andar · Espaço pular · J atacar · S/↓+J pogo · K curar · R reiniciar · F3 debug",{
    fontFamily:"Arial,sans-serif",fontSize:"13px",color:"#fff1d7",
    backgroundColor:"#263d32dd",padding:{x:10,y:8}
   }).setScrollFactor(0).setDepth(90);
@@ -148,15 +149,18 @@ class Training extends Phaser.Scene{
   var downHeld=!!(k.S?.isDown||this.cursors?.down.isDown||pad?.buttons?.[13]?.pressed||
    (pad?.axes?.[1]?.getValue()||0)>.55);
   this.combat?.update(Math.min(delta,50),attackHeld,grounded,downHeld);
+  var healHeld=!!(k.K?.isDown||pad?.buttons?.[1]?.pressed);
+  this.inventory?.healButton(healHeld);
   if(this.debugOn)this.debugText.setText([
-    "ARUANDA / SPRINT 03",
+    "ARUANDA / SPRINT 04",
     "x: "+Math.round(this.hero.x)+"  y: "+Math.round(this.hero.y),
     "vx: "+Math.round(body.velocity.x)+"  vy: "+Math.round(body.velocity.y),
     "chão: "+(grounded?"SIM":"NÃO"),
     "coyote: "+this.coyote.toFixed(3),
     "buffer: "+this.buffer.toFixed(3),
     "gamepad: "+(pad?"CONECTADO":"não conectado"),
-    ...(this.combat?.getDebugLines()||[])
+    ...(this.combat?.getDebugLines()||[]),
+    ...(this.inventory?.getDebugLines()||[])
   ]);
  }
  drawBackground(){

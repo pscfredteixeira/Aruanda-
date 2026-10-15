@@ -1,4 +1,4 @@
-/* ARUANDA — Sprint 03 / combate no chão e no ar, inimigo flutuante, Phaser 3.90.0 */
+/* ARUANDA — Sprint 04 / combate emite recompensas para o sistema de recursos. */
 (function(){
 "use strict";
 var Phaser=window.Phaser;
@@ -221,6 +221,10 @@ class CombatSystem{
   if(enemy.hp===0){
     enemy.dead=true;
     this.killCount++;this.updateHud();
+    s.events.emit("aruanda:enemy-defeated",{
+      type:enemy===this.flier?"wisp":"crawler",
+      x:enemy.x,y:enemy.y,killCount:this.killCount
+    });
     enemy.disableBody(true,true);
     if(enemy===this.enemy){
       this.enemyState="derrotado";
