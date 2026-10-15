@@ -42,7 +42,7 @@ class CombatSystem{
   this.message.setText("J / X-□  atacar   ·   R  reiniciar   ·   eliminações: "+this.killCount);
  }
  spawnEnemy(){
-  if(!this.scene.sys.isActive() || this.enemy)return;
+  if(this.enemy)return;
   var s=this.scene;
   var e=s.physics.add.sprite(355,650,"crawler").setDepth(14);
   e.setCollideWorldBounds(true);
@@ -57,7 +57,7 @@ class CombatSystem{
  destroyEnemy(){
   this.enemyFloorCollider?.destroy();this.enemyPlayerOverlap?.destroy();
   this.enemyBar?.destroy();
-  if(this.enemy?.active)this.enemy.destroy();
+  if(this.enemy)this.enemy.destroy();
   this.enemy=null;this.enemyBar=null;this.enemyFloorCollider=null;this.enemyPlayerOverlap=null;
  }
  startAttack(number){

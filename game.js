@@ -139,7 +139,6 @@ class Training extends Phaser.Scene{
   var accel=axis?(grounded?MOVE.groundAccel:MOVE.airAccel):(grounded?MOVE.groundDecel:MOVE.airDecel);
   if(!this.combat || this.time.now>=this.combat.knockbackUntil){body.setVelocityX(approach(body.velocity.x,target,accel*dt));}
   if(axis){this.face=axis;this.hero.setFlipX(axis<0);}
-  if(this.combat && this.time.now<this.combat.knockbackUntil){/* Preserve damage knockback without changing jump tuning. */} 
   if(grounded&&this.hero.y<WORLD.height-120)this.lastSafe={x:this.hero.x,y:this.hero.y};
   if(this.hero.y>WORLD.height-42){
     this.hero.setPosition(this.lastSafe.x,this.lastSafe.y-6);body.setVelocity(0,0);this.coyote=0;this.buffer=0;

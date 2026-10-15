@@ -37,7 +37,7 @@
           document.getElementById("status").textContent="Não foi possível carregar a biblioteca do jogo. Verifique sua conexão e tente atualizar a página.";return;
         }
         var script=document.createElement("script");script.src=urls[i];
-        script.onload=function(){var game=document.createElement("script");game.src="./combat.js?v=2";game.onload=function(){var play=document.createElement("script");play.src="./game.js?v=2";play.onerror=function(){document.getElementById("status").textContent="Falha ao carregar a lógica do jogo.";};document.body.appendChild(play)};game.src="./combat.js?v=2";game.onerror=function(){document.getElementById("status").textContent="Falha ao carregar o jogo.";};document.body.appendChild(game)};
+        script.onload=function(){var game=document.createElement("script");game.src="./combat.js?v=2";game.onload=function(){var play=document.createElement("script");play.src="./game.js?v=2";play.onerror=function(){document.getElementById("status").textContent="Falha ao carregar a lógica do jogo.";};document.body.appendChild(play)};game.onerror=function(){document.getElementById("status").textContent="Falha ao carregar o jogo.";};document.body.appendChild(game)};
         script.onerror=function(){load(i+1)};
         document.body.appendChild(script);
       }
