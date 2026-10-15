@@ -1,0 +1,22 @@
+name: Regressao Aruanda
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Sintaxe
+        run: |
+          node --check game.js
+          node --check combat.js
+          node --check inventory.js
+          node --check physics_rules.js
+      - name: Testes
+        run: node --test tests/physics_regression.test.cjs

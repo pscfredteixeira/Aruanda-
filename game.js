@@ -1,4 +1,4 @@
-/* ARUANDA — Sprint 04. Movimentação e combate preservados; recursos em inventory.js. */
+/* ARUANDA — Sprint 04 corrigido: plataformas one-way; movimento e combate preservados. */
 (function(){
 "use strict";
 var Phaser=window.Phaser;
@@ -78,7 +78,9 @@ class Training extends Phaser.Scene{
   PLATFORMS.forEach((p,i)=>{
     var bottom=i<4;
     var rect=this.add.rectangle(p[0]+p[2]/2,p[1]+p[3]/2,p[2],p[3],bottom?0x435b4e:0x4f6a58);
-    rect.setStrokeStyle(1,0x284236,.4);solids.add(rect);
+    rect.setStrokeStyle(1,0x284236,.4);
+    rect.setData("oneWay",!bottom);
+    solids.add(rect);
     rect.body.updateFromGameObject();
     this.add.rectangle(p[0]+p[2]/2,p[1]+4,p[2],8,0x8ea86b).setDepth(4);
   });
@@ -91,7 +93,7 @@ class Training extends Phaser.Scene{
   body.setSize(32,62).setOffset(13,12);
   body.setGravityY(MOVE.gravity);
   body.setMaxVelocity(MOVE.speed,MOVE.maxFall);
-  this.physics.add.collider(this.hero,solids);
+  this.physics.add.collider(this.hero,solids,null,window.AruandaPhysics.canCollidePlayerWithPlatform,this);
   this.cameras.main.setBounds(0,0,WORLD.width,WORLD.height);
   this.cameras.main.startFollow(this.hero,false,.09,.1);
   this.cameras.main.setDeadzone(100,65);
@@ -112,6 +114,8 @@ class Training extends Phaser.Scene{
   this.debugText=this.add.text(W-18,17,"",{fontFamily:"monospace",fontSize:"12px",color:"#def3d9",backgroundColor:"#1b3429ee",padding:{x:10,y:9},lineSpacing:5})
     .setOrigin(1,0).setScrollFactor(0).setDepth(95).setVisible(false);
   label(this,2180,625,"FIM DA SALA  →",21,"#304b3e");
+  label(this,145,541,"Passe por baixo ou pule sobre as plataformas",15,"#526c59");
+  label(this,356,607,"ESPÍRITO RASTEJANTE  →",13,"#395344");
  }
  update(time,delta){
   if(!this.hero || !this.hero.active)return;

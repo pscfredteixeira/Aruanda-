@@ -75,6 +75,7 @@ class InventorySystem{
   this.healing=false;this.lastHealHeld=false;this.toastTimer=null;
   createTextures(scene);
   this.group=scene.physics.add.group();
+  // Apenas itens versus plataformas: nunca bloquear o herói, que usa somente overlap.
   this.floorCollider=scene.physics.add.collider(this.group,solids);
   this.overlap=scene.physics.add.overlap(scene.hero,this.group,(hero,item)=>this.collect(item),null,scene);
   this.hud=[];

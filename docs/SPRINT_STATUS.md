@@ -24,3 +24,12 @@ Checkpoints, morte e respawn com preservação dos recursos, revisão do mapa.
 ## Observações
 Bootstrap HTML + JS Phaser 3.90.0 via CDN, hospedagem main / root; TypeScript+Vite continuam planejados.
 O salvamento completo com posições e configurações continua para sprint posterior.
+
+
+## Hotfix pós-Sprint 04
+- [x] Corrigidas colisões laterais/inferiores das plataformas suspensas
+- [x] Chão continua sólido e há aterrissagem pelo topo
+- [x] Mantida coleta por sobreposição, sem bloqueio físico do jogador
+- [x] Indicador visual para o primeiro inimigo e a passagem
+- [x] Criados testes de regressão para colisões e geometria
+- [ ] Confirmar jogando no navegador que é possível chegar ao Rastejante sem saltar

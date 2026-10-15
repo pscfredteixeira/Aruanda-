@@ -37,3 +37,8 @@ Projeto Web estático, sem build: HTML + JS, Phaser 3.90.0 via CDN, GitHub Pages
 Checkpoints, save completo, Fase 1 com 15 salas, cenários e sprites definitivos, Exu e regiões dos orixás.
 
 Consultar `docs/SPRINT_04_TESTES.md` para validar o sprint.
+
+
+## Hotfix de colisões após Sprint 04
+
+As plataformas suspensas agora são atravessáveis de baixo e lateralmente; pousar de cima continua possível. O chão permanece sólido. O primeiro inimigo pode ser alcançado caminhando para a direita. Os itens não colidem solidamente com o herói: apenas overlap. Regras isoladas em physics_rules.js, com testes em tests/physics_regression.test.cjs.
