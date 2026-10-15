@@ -23,9 +23,9 @@
   </style>
 </head>
 <body>
-  <header><div class="brand">ARUANDA</div><div class="edition">PRÉVIA JOGÁVEL<br>SPRINTS 00 + 01</div></header>
+  <header><div class="brand">ARUANDA</div><div class="edition">PRÉVIA JOGÁVEL<br>SPRINTS 00 + 02</div></header>
   <main><div id="game-container"><div id="status" role="status">Preparando o mundo de Aruanda…</div></div></main>
-  <footer><div><strong>Movimento:</strong> A / D ou ← → &nbsp; <strong>Pulo:</strong> Espaço / W / ↑ ou A do controle</div><div><strong>R:</strong> reiniciar &nbsp; <strong>F3:</strong> debug &nbsp; <strong>Esc:</strong> menu</div></footer>
+  <footer><div><strong>Movimento:</strong> A / D ou ← → &nbsp; <strong>Pulo:</strong> Espaço / W / ↑ ou A do controle</div><div><strong>J / X-□:</strong> atacar &nbsp; <strong>R:</strong> reiniciar &nbsp; <strong>F3:</strong> debug &nbsp; <strong>Esc:</strong> menu</div></footer>
   <script>
     (function(){
       var urls=[
@@ -37,7 +37,7 @@
           document.getElementById("status").textContent="Não foi possível carregar a biblioteca do jogo. Verifique sua conexão e tente atualizar a página.";return;
         }
         var script=document.createElement("script");script.src=urls[i];
-        script.onload=function(){var game=document.createElement("script");game.src="./game.js?v=1";game.onerror=function(){document.getElementById("status").textContent="Falha ao carregar o jogo.";};document.body.appendChild(game)};
+        script.onload=function(){var game=document.createElement("script");game.src="./combat.js?v=2";game.onload=function(){var play=document.createElement("script");play.src="./game.js?v=2";play.onerror=function(){document.getElementById("status").textContent="Falha ao carregar a lógica do jogo.";};document.body.appendChild(play)};game.src="./combat.js?v=2";game.onerror=function(){document.getElementById("status").textContent="Falha ao carregar o jogo.";};document.body.appendChild(game)};
         script.onerror=function(){load(i+1)};
         document.body.appendChild(script);
       }

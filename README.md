@@ -1,42 +1,31 @@
 # Aruanda
 
-Metroidvania 2D autoral inspirado nas cosmologias afro-brasileiras. O protagonista é um espírito perdido que explora um mundo de passagens interrompidas.
+Metroidvania 2D autoral inspirado nas cosmologias afro-brasileiras.
 
-**Estado:** Sprints 00–01: fundação Web e prévia jogável de movimento. Ainda não é uma fase final.
+**Estado:** Sprint 02 — prévia jogável de movimento e combate.
 
 **Jogar:** https://pscfredteixeira.github.io/Aruanda-/
 
+## Jogabilidade atual
+- Sala de teste com plataformas, saltos e câmera seguindo o protagonista.
+- Corrida, pulo curto e longo, coyote time e jump buffer.
+- Combate com a vara quebrada: golpe inicial e segundo golpe encadeado com novo pressionamento.
+- Alcance de ataque com hitbox temporária, orientação esquerda/direita, acerto único por golpe, feedback visual, hit-stop e knockback.
+- Espírito Rastejante com 2 HP, patrulha, perseguição curta, atordoamento e reaparecimento para testes.
+- Jogador com 5 HP, dano por contato, invulnerabilidade temporária e reinício após perder toda a vida.
+- HUD básico de vida, eliminações e debug (F3).
+- Teclado: A/D ou setas para andar; Espaço/W/↑ para pular; J para atacar; R reiniciar; Esc menu.
+- Gamepad: analógico/D-pad para andar; A/Cross pular; X/Square atacar.
+
 ## Publicação
+A versão desta entrega é HTML + JavaScript com Phaser 3.90.0 carregado por CDN, compatível com GitHub Pages configurado para **main/(root)**. Os scripts executam em ordem: Phaser, combat.js, game.js.
 
-A prévia atual usa Phaser 3.90.0, carregado por CDN, e arquivos estáticos \`index.html\` + \`game.js\`. Foi escolhida para funcionar com GitHub Pages configurado em **main / (root)**, sem build de servidor.
+A arquitetura Phaser + TypeScript + Vite permanece como direção para uma migração posterior; o protótipo estático foi escolhido para publicação direta sem build.
 
-> O projeto principal continuará seguindo o planejamento Phaser + TypeScript + Vite. A migração do bootstrap estático para um build versionado será feita em sprint de infraestrutura, quando pudermos validar as dependências e o pipeline de deploy. O bootstrap atual não é a arquitetura final.
+## Fora do escopo atual
+Ataque aéreo e para baixo, inimigo flutuante, chefe opcional, coleta de recursos, checkpoints, saves e mapa definitivo.
 
-## Jogabilidade implementada
+## Testes
+Revisar manualmente no navegador: movimento, combo em J, direção dos golpes, dano, HUD, contato inimigo-jogador, hit-stop, respawn e controle real. Referência: \`docs/SPRINT_02_TESTES.md\`.
 
-- Tela inicial e Test Room com plataformas e um percurso longo.
-- Movimento com aceleração, frenagem e controle no ar.
-- Pulo simples com altura variável, 120 ms de coyote time e 120 ms de jump buffer.
-- Câmera seguindo o personagem, câmera com limites de mundo.
-- Teclado (A/D, setas, W, Espaço), gamepad (D-pad, analógico e A/Cross).
-- Reiniciar com R, debug F3, voltar ao menu com Esc.
-
-## Escopo ainda não implementado
-
-Combate, inimigos, coleta, checkpoints, salvamento, sprites finais e fase completa.
-
-## Observações
-
-- Necessária conexão com a internet para carregar Phaser via CDN. Há um segundo CDN de contingência.
-- Os desenhos atuais são geométricos/vetoriais provisórios.
-- Suporte a gamepad depende do navegador e ainda requer teste físico.
-- Os parâmetros estão em \`game.js\`, bloco \`MOVE\`.
-
-### Design aprovado
-
-- Protagonista negro estilizado com vara quebrada.
-- 5 pontos de vida no futuro; três tipos de inimigos; Ecos, Fragmentos de Memória e Essência Vital.
-- Fase 1 extensa, com exploração superior e inferior, acessível com pulo simples.
-- Exu como guia, orixás concedendo poderes nas fases seguintes.
-
-O arquivo \`docs/SPRINT_STATUS.md\` acompanha o andamento.
+Os visuais atuais são placeholders vetoriais, não a arte definitiva.

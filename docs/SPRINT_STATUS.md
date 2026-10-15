@@ -1,30 +1,27 @@
-# Aruanda — Controle de sprints
+# Aruanda — Progresso dos sprints
 
 ## Sprint 00 — Fundação Web
-- [x] Repositório GitHub público na branch main.
-- [x] Página inicial responsiva em \`index.html\`.
-- [x] Bootstrap Phaser no navegador sem processo de build.
-- [x] Configuração compatível com Pages main/(root).
-- [ ] Verificar a URL pública após a atualização do Pages.
+- [x] Repositório público, branch main
+- [x] Menu e hospedagem estática compatível com GitHub Pages
 
-## Sprint 01 — Movimento e pulo
-- [x] Menu e sala jogável de teste.
-- [x] Corrida, desaceleração, salto variável.
-- [x] Coyote time e jump buffer.
-- [x] Câmera suave com limites.
-- [x] Teclado e integração inicial com gamepad.
-- [x] Avatar vetorial provisório original.
-- [x] F3 debug, reinício e retorno ao menu.
-- [ ] Teste manual com navegador e controle reais.
+## Sprint 01 — Movimento
+- [x] Plataforma, corrida, pulo variável, buffer, coyote time, câmera e suporte inicial a gamepad
+- [ ] Confirmação manual de execução pelo usuário
 
 ## Sprint 02 — Combate
-Não iniciado. Implementar após validação manual do Sprint 01: vara quebrada, dois ataques, hitbox/hurtbox, inimigo rastejante e sensação dos golpes.
+- [x] Golpe 1 + golpe 2 com segundo pressionamento
+- [x] Hitbox de janela ativa orientada à esquerda/direita
+- [x] Um acerto por golpe, feedback, hit-stop e knockback
+- [x] Espírito Rastejante (2 HP), patrulha, detecção e perseguição
+- [x] Contato causa 1 HP, invulnerabilidade 0,8s, reset ao perder 5 HP
+- [x] HUD de vida, debug, J / X-Square, arena com reaparecimento do inimigo
+- [ ] Teste funcional em navegador real e controle conectado
 
-## Tecnologias
-Phaser 3.90.0, JavaScript de bootstrap estático nesta entrega; TypeScript + Vite continuam no plano do projeto.
+## Próxima etapa — Sprint 03
+Ataques aéreo e para baixo, melhoras de game feel, inimigo flutuante, mantendo a fase de teste. Só avançar após avaliar o Sprint 02.
 
-## Decisões
-Os sprites/conceitos aprovados não são reproduzidos automaticamente a partir das imagens. A prévia usa formas vetoriais programáticas; a arte final será incorporada após estabilização da jogabilidade.
+## Tecnologia
+Phaser 3.90.0 por CDN, JavaScript estático. Migração para TypeScript + Vite planejada.
 
-## Limites da validação
-Nenhum teste de navegador real foi executado pelo assistente nesta entrega. A publicação via Pages precisa ser conferida após sincronização.
+## Observações
+Sem teste de browser automatizado nesta publicação. Código precisa ser validado jogando.
